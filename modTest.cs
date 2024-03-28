@@ -52,8 +52,8 @@ namespace WinFormsApp1
                 "T_Otv.verno 'Верный?'," +
                 "FROM T_Test " +
                 "INNER JOIN T_Vopros ON T_Test.idTestov = T_Vopros.idTest " +
-                "INNER JOIN T_Otv ON  T_Vopros.idVoprosa = T_Otv.idVop " +
-                "WHERE T_Test.idTestov = 1";
+                "INNER JOIN T_Otv ON  T_Vopros.idVoprosa = T_Otv.idVop "; //+
+                //"WHERE T_Test.idTestov = 1"
 
             //Открываем соединение
             conn.Open();
@@ -108,8 +108,9 @@ namespace WinFormsApp1
 
             GetListUsers();
             GetComboBoxList();
+            GetComboBoxList2();
 
-            //Видимость полей в гриде
+            //Видимость полей в гриде 
             dataGridView1.Columns[0].Visible = true;
             dataGridView1.Columns[1].Visible = true;
             dataGridView1.Columns[2].Visible = true;
@@ -140,40 +141,40 @@ namespace WinFormsApp1
             //Убираем заголовки строк
             dataGridView1.RowHeadersVisible = false;
             //Показываем заголовки столбцов
-            dataGridView1.ColumnHeadersVisible = true;
+            dataGridView1.ColumnHeadersVisible = true; 
         }
         public void GetComboBoxList()
         {
             //Формирование списка статусов
-            DataTable list_stud_table = new DataTable();
-            MySqlCommand list_stud_command = new MySqlCommand();
+            DataTable list_test_table = new DataTable();
+            MySqlCommand list_test_command = new MySqlCommand();
             //Открываем соединение
             conn.Open();
             //Формируем столбцы для комбобокса списка ЦП
-            list_stud_table.Columns.Add(new DataColumn("idRole", System.Type.GetType("System.Int32")));
-            list_stud_table.Columns.Add(new DataColumn("titleRole", System.Type.GetType("System.String")));
+            list_test_table.Columns.Add(new DataColumn("idTestov", System.Type.GetType("System.Int32")));
+            list_test_table.Columns.Add(new DataColumn("nameTest", System.Type.GetType("System.String")));
             //Настройка видимости полей комбобокса
-            comboBox1.DataSource = list_stud_table;
-            comboBox1.DisplayMember = "titleRole";
-            comboBox1.ValueMember = "idRole";
-            //Формируем строку запроса на отображение списка статусов прав пользователя
-            string sql_list_users = "SELECT idRole, titleRole FROM T_Role";
-            list_stud_command.CommandText = sql_list_users;
-            list_stud_command.Connection = conn;
+            comboBox1.DataSource = list_test_table;
+            comboBox1.DisplayMember = "nameTest";
+            comboBox1.ValueMember = "idTestov";
+            //Формируем строку запроса на отображение списка тестов
+            string sql_list_users = "SELECT T_Test.idTestov, T_Test.nameTest FROM T_Test";
+            list_test_command.CommandText = sql_list_users;
+            list_test_command.Connection = conn;
             //Формирование списка ЦП для combobox'a
-            MySqlDataReader list_stud_reader;
+            MySqlDataReader list_test_reader;
             try
             {
                 //Инициализируем ридер
-                list_stud_reader = list_stud_command.ExecuteReader();
-                while (list_stud_reader.Read())
+                list_test_reader = list_test_command.ExecuteReader();
+                while (list_test_reader.Read())
                 {
-                    DataRow rowToAdd = list_stud_table.NewRow();
-                    rowToAdd["idRole"] = Convert.ToInt32(list_stud_reader[0]);
-                    rowToAdd["titleRole"] = list_stud_reader[1].ToString();
-                    list_stud_table.Rows.Add(rowToAdd);
+                    DataRow rowToAdd = list_test_table.NewRow();
+                    rowToAdd["idTestov"] = Convert.ToInt32(list_test_reader[0]);
+                    rowToAdd["nameTest"] = list_test_reader[1].ToString();
+                    list_test_table.Rows.Add(rowToAdd);
                 }
-                list_stud_reader.Close();
+                list_test_reader.Close();
                 conn.Close();
             }
             catch (Exception ex)
@@ -187,6 +188,49 @@ namespace WinFormsApp1
             }
         }
 
+        public void GetComboBoxList2()
+        {
+            //Формирование списка статусов
+            DataTable list_vop_table = new DataTable();
+            MySqlCommand list_vop_command = new MySqlCommand();
+            //Открываем соединение
+            conn.Open();
+            //Формируем столбцы для комбобокса списка ЦП
+            list_vop_table.Columns.Add(new DataColumn("nomerVop", System.Type.GetType("System.Int32")));            
+            //Настройка видимости полей комбобокса
+            comboBox2.DataSource = list_vop_table;
+            comboBox2.DisplayMember = "nomerVop";
+            comboBox2.ValueMember = "nomerVop";
+            int nT = comboBox1.Items.Count;
+            //Формируем строку запроса на отображение списка вопросов
+            string sql_list_vop = $"SELECT T_Vopros.nomerVop FROM T_Vopros WHERE T_Vopros.idTest = {nT}";
+            list_vop_command.CommandText = sql_list_vop;
+            list_vop_command.Connection = conn;
+            //Формирование списка ЦП для combobox'a
+            MySqlDataReader list_vop_reader;
+            try
+            {
+                //Инициализируем ридер
+                list_vop_reader = list_vop_command.ExecuteReader();
+                while (list_vop_reader.Read())
+                {
+                    DataRow rowToAdd = list_vop_table.NewRow();
+                    rowToAdd["nomerVop"] = Convert.ToInt32(list_vop_reader[0]);                   
+                    list_vop_table.Rows.Add(rowToAdd);
+                }
+                list_vop_reader.Close();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка чтения списка ролей \n\n" + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
 
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -256,18 +300,7 @@ namespace WinFormsApp1
                 reload_list();
             }
         }
-
-        private void активироватьАккаунтToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ChangeStatusEmploy("1");
-        }
-
-        private void деактивироватьАккаунтToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ChangeStatusEmploy("0");
-        }
-
-
+     
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button2.Visible = true;
