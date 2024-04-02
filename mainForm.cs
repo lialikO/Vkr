@@ -23,8 +23,8 @@ namespace WinFormsApp1
                     Application.Exit();
                 }
             }
-               
-                toolStripStatusLabel1.Text = $"Здравствуйте {AutClass.aut_fio}! Вы вошли как  {AutClass.aut_role_title.ToString()}";
+
+            toolStripStatusLabel1.Text = $"Здравствуйте {AutClass.aut_fio}! Вы вошли как  {AutClass.aut_role_title.ToString()}";
             switch (AutClass.aut_role)
             {
                 case 3:
@@ -78,6 +78,13 @@ namespace WinFormsApp1
             this.Hide();
             redTest redTest = new redTest();
             redTest.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            rezTest rezTest = new rezTest();
+            rezTest.ShowDialog();
         }
     }
 }
