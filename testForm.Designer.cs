@@ -142,6 +142,7 @@
             // comboBox1
             // 
             comboBox1.Dock = DockStyle.Fill;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Font = new Font("Times New Roman", 14.25F);
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "1", "2" });
@@ -173,7 +174,6 @@
             label3.Name = "label3";
             label3.Size = new Size(779, 41);
             label3.TabIndex = 10;
-            label3.Text = "т";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -187,7 +187,6 @@
             label4.Name = "label4";
             label4.Size = new Size(779, 164);
             label4.TabIndex = 11;
-            label4.Text = "в";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1

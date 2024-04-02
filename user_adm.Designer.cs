@@ -251,7 +251,7 @@
             textBox1.Dock = DockStyle.Fill;
             textBox1.Location = new Point(208, 3);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(302, 23);
+            textBox1.Size = new Size(302, 21);
             textBox1.TabIndex = 4;
             // 
             // textBox2
@@ -259,7 +259,7 @@
             textBox2.Dock = DockStyle.Fill;
             textBox2.Location = new Point(208, 44);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(302, 23);
+            textBox2.Size = new Size(302, 21);
             textBox2.TabIndex = 5;
             // 
             // textBox3
@@ -267,7 +267,7 @@
             textBox3.Dock = DockStyle.Fill;
             textBox3.Location = new Point(208, 85);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(302, 23);
+            textBox3.Size = new Size(302, 21);
             textBox3.TabIndex = 6;
             // 
             // textBox4
@@ -275,7 +275,7 @@
             textBox4.Dock = DockStyle.Fill;
             textBox4.Location = new Point(721, 3);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(303, 23);
+            textBox4.Size = new Size(303, 21);
             textBox4.TabIndex = 7;
             // 
             // label5
@@ -315,6 +315,7 @@
             // comboBox1
             // 
             comboBox1.Dock = DockStyle.Fill;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Администратор", "Учитель", "Студент" });
             comboBox1.Location = new Point(721, 44);
@@ -352,6 +353,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1033, 558);
             Controls.Add(tableLayoutPanel1);
+            Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Name = "user_adm";
             Text = "Form1";
             Load += user_adm_Load;
