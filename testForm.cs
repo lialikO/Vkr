@@ -314,5 +314,13 @@ namespace Vkr
         {
             GetComboBoxList();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            AutClass.vhod = true;
+            mainForm mainForm = new mainForm();
+            mainForm.Visible = true;
+        }
     }
 }

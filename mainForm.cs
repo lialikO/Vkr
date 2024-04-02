@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic.Logging;
 using MySql.Data.MySqlClient;
+using testvar;
 using Vkr;
 namespace WinFormsApp1
 {
@@ -75,8 +76,8 @@ namespace WinFormsApp1
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            modTest modTest = new modTest();
-            modTest.ShowDialog();
+            redTest redTest = new redTest();
+            redTest.ShowDialog();
         }
     }
 }

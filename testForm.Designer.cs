@@ -40,6 +40,7 @@
             label3 = new Label();
             label4 = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
+            button5 = new Button();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -101,13 +102,13 @@
             // 
             // button6
             // 
-            tableLayoutPanel1.SetColumnSpan(button6, 4);
+            tableLayoutPanel1.SetColumnSpan(button6, 3);
             button6.Dock = DockStyle.Fill;
             button6.Font = new Font("Times New Roman", 14.25F);
-            button6.Location = new Point(4, 332);
+            button6.Location = new Point(200, 332);
             button6.Margin = new Padding(4);
             button6.Name = "button6";
-            button6.Size = new Size(779, 76);
+            button6.Size = new Size(583, 76);
             button6.TabIndex = 5;
             button6.Text = "завершить";
             button6.UseVisualStyleBackColor = true;
@@ -199,7 +200,6 @@
             tableLayoutPanel1.Controls.Add(label3, 0, 1);
             tableLayoutPanel1.Controls.Add(textBox1, 3, 0);
             tableLayoutPanel1.Controls.Add(label2, 2, 0);
-            tableLayoutPanel1.Controls.Add(button6, 0, 4);
             tableLayoutPanel1.Controls.Add(button1, 0, 3);
             tableLayoutPanel1.Controls.Add(comboBox1, 1, 0);
             tableLayoutPanel1.Controls.Add(button2, 1, 3);
@@ -207,6 +207,8 @@
             tableLayoutPanel1.Controls.Add(button4, 2, 3);
             tableLayoutPanel1.Controls.Add(button3, 3, 3);
             tableLayoutPanel1.Controls.Add(label4, 0, 2);
+            tableLayoutPanel1.Controls.Add(button6, 1, 4);
+            tableLayoutPanel1.Controls.Add(button5, 0, 4);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;
             tableLayoutPanel1.Location = new Point(0, 0);
@@ -220,6 +222,17 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanel1.Size = new Size(787, 412);
             tableLayoutPanel1.TabIndex = 12;
+            // 
+            // button5
+            // 
+            button5.Dock = DockStyle.Fill;
+            button5.Location = new Point(3, 331);
+            button5.Name = "button5";
+            button5.Size = new Size(190, 78);
+            button5.TabIndex = 12;
+            button5.Text = "В Главное меню";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // testForm
             // 
@@ -251,5 +264,6 @@
         private Label label3;
         private Label label4;
         private TableLayoutPanel tableLayoutPanel1;
+        private Button button5;
     }
 }
